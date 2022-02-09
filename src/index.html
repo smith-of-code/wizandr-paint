@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            Рисовалка
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="color" class="form-colour_picker" id="colourPicker">
+                </div>
+                <div class="col-md-6">
+                    <input type="range" min="1" max="10" value="1" class="form-range" id="sizeRange">
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-outline-primary active" id="pencilBtn"><i class="fas fa-pencil-alt"></i></button>
+                    <button type="button" class="btn btn-outline-primary" id="eraserBtn" ><i class="fas fa-eraser"></i></button>
+                    <button type="button" class="btn btn-outline-primary" id="saveBtn" ><i class="fas fa-save"></i></button>
+                    <button type="button" class="btn btn-outline-primary" id="clearBtn" ><i class="fas fa-snowplow"></i></button>
+                </div>
+            </div>
+
+            <div class="row" id="paint-container">
+                <canvas id="graph" width="200" height="200"></canvas>
+            </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="row row-cols-1 row-cols-md-3 g-4" id="images-container">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src='app.js'></script>
+</body>
+</html>
