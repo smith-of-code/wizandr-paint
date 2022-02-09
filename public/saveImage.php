@@ -1,6 +1,6 @@
 <?php
 $data = json_decode(file_get_contents('php://input'), true)['data'];
-
+$fileName = json_decode(file_get_contents('php://input'), true)['fileName'];
 
 if (preg_match('/^data:image\/(\w+);base64,/', $data, $type)) {
     $data = substr($data, strpos($data, ',') + 1);
@@ -19,4 +19,6 @@ if (preg_match('/^data:image\/(\w+);base64,/', $data, $type)) {
     throw new \Exception('did not match data URI with image data');
 }
 
-file_put_contents("img.{$type}", $data);
+file_put_contents("{$fileName}.{$type}", $data);
+
+echo json_encode(["{$fileName}.{$type}"]);

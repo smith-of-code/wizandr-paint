@@ -12,6 +12,8 @@ let eraser = false
 let size = 1
 let colour = 'black'
 
+let images=[]
+
 let paintContainer = document.getElementById('paint-container')
 let imagesContainer = document.getElementById('images-container')
 let canvas = document.getElementById('graph');
@@ -54,15 +56,12 @@ saveBtn.addEventListener('click', e=>{
         url: 'saveImage.php',
         method: 'POST',
         data: {
-            data:dataURL
+            data:dataURL,
+            fileName:'image'+(images.length+1)
         }
-    }).then(function (response) {
-
     })
-        .catch(function (error) {
-            console.log(error);
-        })
 
+    images.push('.\\image'+(images.length+1)+'.png')
 
     let image = `
     <div class="col">
@@ -100,3 +99,25 @@ canvas.addEventListener('mouseup',(e)=>{
     draw = false
 
 })
+
+
+        axios({
+            url: 'getImage.php',
+            method: 'GET'
+        }).then(function (response) {
+
+            response.data.forEach(e=>{
+                images.push(e)
+                let image = `
+            <div class="col">
+                <div class="card">
+                    <img src="${e}" class="card-img-top">
+                </div>
+            </div>
+            `
+                imagesContainer.insertAdjacentHTML('beforeend',image)
+            })
+        })
+            .catch(function (error) {
+                console.log(error);
+        })
